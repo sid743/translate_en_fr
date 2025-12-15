@@ -1,52 +1,79 @@
-# translate_en_fr
-transformer to translate pair en&lt;->fr
-Synthetic English-French Translation with T5
-This project demonstrates how to generate a synthetic dataset of English/French sentence pairs and use it to fine-tune a T5-small model for bidirectional translation.
+# NeuralSeq: English-French Neural Machine Translation
 
-Prerequisites
-Ensure you have Python installed along with the following libraries:
+This project implements a complete Neural Machine Translation (NMT) pipeline using a T5 transformer model. It demonstrates synthetic data generation, model fine-tuning using PyTorch/Hugging Face, and a user-friendly GUI application for real-time translation.
 
-Bash
+## 📂 Project Structure
 
-pip install torch transformers datasets
-Usage Pipeline
-Follow these three steps to generate data, train the model, and test translations.
+- `gen_syn_pairs.py`: A script that procedurally generates synthetic English–French sentence pairs (grammar-aware).
+- `train_en_fr.py`: The training pipeline that fine-tunes a `t5-small` model on the generated dataset.
+- `translate_app.py`: A modern GUI application (built with CustomTkinter) to demonstrate the model.
+- `requirements.txt`: List of Python dependencies.
 
-1. Generate Data
-Create the synthetic dataset. This script generates random sentence pairs based on predefined vocabulary templates.
+## 🚀 Setup & Installation
 
-Bash
+### 1. Prerequisites
 
-# Generates 'en_fr_synthetic.tsv' with 80,000 pairs
-python gen_syn_pairs.py --output en_fr_synthetic.tsv
-2. Train Model
-Fine-tune the t5-small model. This script loads the TSV, creates a bidirectional dataset (En→Fr and Fr→En), and trains the model.
+- Python 3.8 or higher
+- (Optional) A GPU is recommended for training, but the app will run fine on CPU
 
-Bash
+### 2. Installation
 
-# Trains the model and saves it to './mt_en_fr_t5_final'
+Open your terminal/command prompt in the project folder and run:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 📥 Model Setup (Required)
+
+Due to GitHub's file size limits, the fine-tuned model is hosted externally. You must download it to run the app.
+
+1. Download the model here: **[LINK TO YOUR GOOGLE DRIVE ZIP]** or from the .zip file uploaded on google classroom
+2. Unzip the downloaded file
+3. **Rename** the extracted folder to exactly: `mt_en_fr_t5_final`
+4. **Move** the `mt_en_fr_t5_final` folder into this project directory  
+   (it should be in the same folder as `translate_app.py`)
+
+## 🖥️ Running the Application
+
+To start the translation interface:
+
+```bash
+python translate_app.py
+```
+
+1. Wait for the status bar to show **"✅ Model loaded successfully"**
+2. Type an English sentence (e.g., *"Please send the report tomorrow"*)
+3. Click **TRANSLATE**
+
+DONE 
+Thank you, 
+Regards,
+Niyati, Reva and Siddharth
+
+## 🔬 Reproducibility (Training from Scratch)
+
+If you wish to reproduce the training process entirely instead of using the pre-trained model:
+
+### Step 1: Generate Data
+
+```bash
+python gen_syn_pairs.py --num_pairs 40000 --output synthetic_en_fr.tsv
+```
+
+This generates **40,000 synthetic sentence pairs** based on grammatical templates.
+
+### Step 2: Train the Model
+
+```bash
 python train_en_fr.py
-Note: This may take some time depending on your hardware (GPU recommended).
+```
 
-3. Run Translation
-Load the trained model and translate text interactively.
+This script fine-tunes **T5-small** and saves the artifacts to the `./mt_en_fr_t5_final` directory.
 
-Bash
+## 🛠️ Technologies Used
 
-python translate_with_t5.py
-Interactive Commands:
-
-Enter direction: en-fr or fr-en
-
-Enter text: e.g., "Alice likes pizza."
-
-Press 'q' to quit.
-
-Project Structure
-gen_syn_pairs.py: Script to create synthetic English/French sentence pairs (TSV format).
-
-train_en_fr.py: Main training script. Preprocesses data with T5 prefixes ("translate English to French: "), handles tokenization, and runs the training loop.
-
-translate_with_t5.py: Inference script to load the saved model and run translations.
-
-en_fr_synthetic.tsv: The generated dataset file.
+- **Model Architecture**: T5-Small (Transformer)
+- **Frameworks**: PyTorch, Hugging Face Transformers
+- **GUI**: CustomTkinter
+- **Data**: Procedural Synthetic Generation
