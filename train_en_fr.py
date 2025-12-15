@@ -16,9 +16,9 @@ import transformers
 
 # ========= CONFIG =========
 MODEL_NAME = "t5-small"              # you can later try "t5-base"
-TSV_PATH = "en_fr_synthetic.tsv"     # change if your file has a different name
-MAX_SOURCE_LENGTH = 64
-MAX_TARGET_LENGTH = 64
+TSV_PATH = "synthetic_en_fr.tsv"
+MAX_SOURCE_LENGTH = 48
+MAX_TARGET_LENGTH = 48
 VAL_SPLIT = 0.1                      # 10% validation
 SEED = 42
 OUTPUT_DIR = "./mt_en_fr_t5"
@@ -114,11 +114,11 @@ def main():
         learning_rate=3e-4,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
-        gradient_accumulation_steps=4,  # effective batch size 32
+        gradient_accumulation_steps=8,  # effective batch size 32
         weight_decay=0.01,
         save_total_limit=2,
-        num_train_epochs=3,
-        fp16=torch.cuda.is_available(),  # use mixed precision if GPU supports it
+        num_train_epochs=1,
+        fp16=False
     )
 
     # 8. Trainer (no fancy seq2seq extras, we just train on loss)
