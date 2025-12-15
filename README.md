@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 Due to GitHub's file size limits, the fine-tuned model is hosted externally. You must download it to run the app.
 
-1. Download the model here: **[https://drive.google.com/file/d/1CXJgTzEl1wUvzTA0XXbRN3UgYhr3bS35/view?usp=sharing]** or from the .zip file uploaded on google classroom
+1. Download the model here: **https://drive.google.com/file/d/1CXJgTzEl1wUvzTA0XXbRN3UgYhr3bS35/** or from the .zip file uploaded on google classroom
 2. Unzip the downloaded file
 3. **Rename** the extracted folder to exactly: `mt_en_fr_t5_final`
 4. **Move** the `mt_en_fr_t5_final` folder into this project directory  
